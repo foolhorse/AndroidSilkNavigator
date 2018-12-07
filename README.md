@@ -24,10 +24,12 @@ public class LoginActivity extends AppCompatActivity {
 
 ```kotlin
 Navigator.getInstance().from(this).to("login").go()
-``
+```
 
 ### Interceptor
+
 just add an Interceptor object , Or lambda 😎。
+
 ```kotlin
 Navigator.getInstance().addInterceptor { source, destination ->
     if (!isLogin && "user/edit" == destination) {
