@@ -1,0 +1,14 @@
+package me.machao.silknavigator.sample
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import me.machao.silknavigator.anno.Route
+
+@Route("user/edit")
+class UserEditActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_edit)
+    }
+}
