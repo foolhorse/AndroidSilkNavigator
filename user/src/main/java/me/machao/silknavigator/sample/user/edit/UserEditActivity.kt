@@ -1,8 +1,9 @@
-package me.machao.silknavigator.sample
+package me.machao.silknavigator.sample.user.edit
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import me.machao.silknavigator.anno.Route
+import me.machao.silknavigator.sample.user.R
 
 @Route("user/edit")
 class UserEditActivity : AppCompatActivity() {

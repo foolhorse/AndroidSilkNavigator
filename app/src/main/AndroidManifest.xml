@@ -17,9 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="me.machao.silknavigator.sample.LoginActivity">
+        <activity android:name="me.machao.silknavigator.sample.user.LoginActivity">
         </activity>
-        <activity android:name="me.machao.silknavigator.sample.UserEditActivity">
+        <activity android:name="me.machao.silknavigator.sample.user.edit.UserEditActivity">
         </activity>
     </application>
 

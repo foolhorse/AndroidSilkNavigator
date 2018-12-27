@@ -30,10 +30,12 @@ class RouteProcessor : AbstractProcessor() {
 
     private val generatedSourcesRoot by lazy { processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty() }
     private var filer: Filer? = null
+    private lateinit var processingEnvironment: ProcessingEnvironment
 
     override fun init(env: ProcessingEnvironment?) {
         super.init(env)
         filer = env!!.filer
+        processingEnvironment = env
     }
 
     override fun getSupportedAnnotationTypes(): Set<String> {
@@ -52,14 +54,18 @@ class RouteProcessor : AbstractProcessor() {
             if (hasError) {
                 return false
             }
+
+            val packageElement = processingEnv.elementUtils.getPackageOf(element)
+            printWarning("apt process find a target: " + processingEnvironment.options["moduleName"] + " " + packageElement.qualifiedName + "  " + element.simpleName)
+
             navBuilder.addRoute(element)
 
-            val kotlinFileSpec = navBuilder.brewKotlin()
+            val kotlinFileSpec = navBuilder.brewKotlin("RouteSet_" + processingEnvironment.options["moduleName"])
             try {
                 val file = File(generatedSourcesRoot)
                 file.mkdir()
                 kotlinFileSpec.writeTo(file)
-            } catch (e: IOException) {
+            } catch (e: Exception) {
                 printError(String.format("Unable to write binding for type %s: %s", element as TypeElement, e.message))
             }
 
@@ -235,6 +241,10 @@ class RouteProcessor : AbstractProcessor() {
 
     private fun printWarning(message: String) {
         printMessage(Diagnostic.Kind.WARNING, message)
+    }
+
+    private fun printNote(message: String) {
+        printMessage(Diagnostic.Kind.NOTE, message)
     }
 
     private fun printMessage(kind: Diagnostic.Kind, message: String) {

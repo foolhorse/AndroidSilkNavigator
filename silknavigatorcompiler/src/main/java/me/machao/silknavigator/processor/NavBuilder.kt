@@ -24,7 +24,7 @@ class NavBuilder {
                 String::class.asClassName(),
                 RouteBinding::class.asClassName())
 
-    fun brewKotlin(): FileSpec {
+    fun brewKotlin(className:String): FileSpec {
         val constructorBuilder = FunSpec.constructorBuilder()
             .addParameter("map", mapType)
 
@@ -39,10 +39,10 @@ class NavBuilder {
             )
         }
 
-        val classBuilder = TypeSpec.classBuilder("RouteSet")
+        val classBuilder = TypeSpec.classBuilder(className)
             .primaryConstructor(constructorBuilder.build())
 
-        return FileSpec.builder("me.machao.silknavigator", "RouteSet")
+        return FileSpec.builder("me.machao.silknavigator", className )
             .addType(classBuilder.build())
             .build()
     }

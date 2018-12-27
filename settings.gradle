@@ -1,1 +1,1 @@
-include ':app', ':silknavigator', ':silknavigatorannotations', ':silknavigatorcompiler'
+include ':app', ':silknavigator', ':silknavigatorannotations', ':silknavigatorcompiler', ':user'
