@@ -11,6 +11,27 @@ SilkNavigator is written in kotlin.
 ### Dependencies
 
 ```groovy
+
+
+```
+
+### Module name
+
+Set module name in module's build.gradle
+
+```groovy
+kapt {
+    arguments {
+        arg("moduleName", "user")
+    }
+}
+```
+
+### Init
+
+call `init` before using Navigator. for example `Application`'s `onCreate`, and pass module name to it.
+```
+Navigator.init(listOf("app","user"))
 ```
 
 ### Page navigate
